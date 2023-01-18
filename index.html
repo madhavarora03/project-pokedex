@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css"></link> 
+    <title>Pokédex</title>
+</head>
+
+<body>
+    <div id="pokedex">
+        <div id="top">
+            <div id="top-bar">
+                <img id="search-icon" alt="search-icon" src="images/search-icon.png"/>
+                <input
+                    type="text" 
+                    id="search"
+                    value="Bulbasaur"
+                />
+                <span id="number">#001</span>
+            </div>
+            <div id="pokemon-image-placeholder">
+                <img src="images/1.png" id="pokemon-image" alt="pokemon-image"/>
+            </div>
+        </div>
+        <div id="data">
+            <div id="type">
+                <span 
+                    style="background-color: rgb(116,203,72);"
+                    class="type"
+                    >
+                    Grass</span>
+                <span 
+                    style="background-color: rgb(164,62,158);"
+                    class="type"
+                    >
+                    Poison</span>
+            </div>
+            <h3 style="color: rgb(116,203,72); font-weight: bold;">About</h3>
+            <div id="about">
+                <div id="weight">
+                    <div id="void"></div>
+                    <div id="weight-image-and-value">
+                        <img src="images/weight-scale.png" id="weight-scale" alt="weight-scale"/>
+                        6.9 kg
+                    </div>
+                    <div id="heading">Weight</div>
+                </div>
+                <div id="height">
+                    <div id="void"></div>
+                    <div id="height-image-and-value">
+                        <img id="ruler" alt="ruler" src="images/ruler.png"/>
+                        0.7 m
+                    </div>
+                    <div id="heading">Height</div>
+                </div>
+                <div id="moves">
+                    <div id="move-name">Chlorophyll</div>
+                    <div id="move-name">Overgrow</div>
+                    <div id="heading">Moves</div>
+                </div>
+            </div>
+            <div id="description">There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.</div>
+            <h3 style="color: rgb(116,203,72); font-weight: bold;">Base Stats</h3>
+            <div id="stats">
+                <div class="stat-row">
+                    <div class="stat-description">HP</div>
+                    <div class="stat-number">045</div>
+                    <div class="stat-bar">
+                        <div class="bar-outer">
+                            <div class="bar-inner" style="width:45%;"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="stat-row">
+                    <div class="stat-description">ATK</div>
+                    <div class="stat-number">049</div>
+                    <div class="stat-bar">
+                        <div class="bar-outer">
+                            <div class="bar-inner" style="width:49%;"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="stat-row">
+                    <div class="stat-description">DEF</div>
+                    <div class="stat-number">049</div>
+                    <div class="stat-bar">
+                        <div class="bar-outer">
+                            <div class="bar-inner" style="width:49%;"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="stat-row">
+                    <div class="stat-description">SATK</div>
+                    <div class="stat-number">065</div>
+                    <div class="stat-bar">
+                        <div class="bar-outer">
+                            <div class="bar-inner" style="width:65%;"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="stat-row">
+                    <div class="stat-description">SDEF</div>
+                    <div class="stat-number">065</div>
+                    <div class="stat-bar">
+                        <div class="bar-outer">
+                            <div class="bar-inner" style="width:65%;"></div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="stat-row">
+                    <div class="stat-description">SPD</div>
+                    <div class="stat-number">045</div>
+                    <div class="stat-bar">
+                        <div class="bar-outer">
+                            <div class="bar-inner" style="width:45%;"></div>
+                        </div>
+                    </div>                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
