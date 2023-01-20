@@ -121,7 +121,7 @@ body{
     height: 20px;
     transform: translateY(0.3rem);
 }
-#data h3{
+.header{
     text-align: center;
 }
 #stats{

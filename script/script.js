@@ -6,6 +6,11 @@ const weight     = document.querySelector('#weight-value');
 const height     = document.querySelector('#height-value');
 const statNumber = document.querySelectorAll('.stat-number');
 const innerBar   = document.querySelectorAll('.bar-inner');
+const outerBar   = document.querySelectorAll('.bar-outer');
+const pokedex    = document.querySelector('#pokedex');
+const about      = document.querySelector('#about-heading');
+const baseStats  = document.querySelector('#base-stats-heading');
+const statDesc   = document.querySelectorAll('.stat-description');
 
 const typeColors = {
     "rock":     [182, 158,  49],
@@ -46,11 +51,11 @@ search.addEventListener('change', async(event) => {
         alert("Pokémon does not exist!");
         return;
     }
-
-    const themeColor = pkmnData.types[0].type.name;
-    console.log(themeColor);
+    // Setting theme colour
+    const themeColour = typeColors[pkmnData.types[0].type.name];
 
     console.log(pkmnData);
+    // console.log(pkmnData.stats.base_stat.toString());
     // Sets pokemon number # at the top of the page
     number.innerHTML = '#' + pkmnData.id.toString().padStart(3, '0');
     // Sets pokemon image
@@ -79,12 +84,20 @@ search.addEventListener('change', async(event) => {
     // Updates Description - to be figured out later
 
     // Updates stat number and stat bar
-    pkmnData.stats.forEach((s, i) => {
-       
+    pkmnData.stats.forEach((s, i) => {       
         statNumber[i].innerHTML = s.base_stat.toString().padStart(3,'0');
         Math.max(s.base_stat);
         innerBar[i].style.width = `${s.base_stat}%`;
+        innerBar[i].style.backgroundColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+        outerBar[i].style.backgroundColor = `rgba(${themeColour[0]},${themeColour[1]},${themeColour[2]},0.3)`
+        statDesc[i].style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
     });
 
+    // Updates Pokedex background
+    pokedex.style.backgroundColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
 
+    // Updates the colour of headings and stats heading
+    about.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+    baseStats.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+    
 });
