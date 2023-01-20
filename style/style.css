@@ -20,7 +20,7 @@ body{
     padding: 0.3rem;
 }
 #top{
-    height: 35%;
+    height: 30%;
     padding: 1.5rem;
     background:url('../images/pokeball.png') ;
     background-repeat: no-repeat;
@@ -31,6 +31,7 @@ body{
     justify-content: space-evenly;
     color: white;
     align-items: center;
+    transform: translateY(-0.75rem);
     /* padding: 0 1.2rem; */
 }
 #search-icon{
@@ -60,24 +61,24 @@ body{
     font-size: 1rem;
 }
 #pokemon-image{
-    width: 270px;
-    height: 270px;
+    width: 240px;
+    height: 240px;
 }
 #pokemon-image-placeholder{
     display: flex;
     justify-content: center;
-    /* transform: translateY(3.25rem); */
+    transform: translateY(-0.2rem);
 }
 #data{
     background-color: white;
-    height: 65%;
+    height: 70%;
     border-radius: 8px;
     padding-top: 5.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#type{
+#types{
     display: flex;
     justify-content: center;
     gap: 0.5rem;
@@ -88,6 +89,7 @@ body{
     border-radius: 27px;
     font-size: 1.08rem;
     font-weight: bold;
+    text-transform: capitalize;
 }
 #weight{
     display: flex;
@@ -150,7 +152,7 @@ body{
     text-align: justify;
     /* transform: translateY(0.5rem); */
 }
-#heading{    
+.heading{
     transform: translateY(-0.2rem);
     justify-content: center;
     height: 20px;
@@ -176,7 +178,8 @@ body{
     border-right: 1.5px solid rgba(160, 160, 160,0.7);
 }
 .stat-number{
-    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    text-align: center;
 }
 .stat-bar{
     width:70%;
@@ -193,4 +196,5 @@ body{
 .bar-inner{
     background-color: rgb(116,203,72);
     border-radius: 4px;
+    transition: width 0.5s ease-in-out;
 }
