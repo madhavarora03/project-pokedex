@@ -16,8 +16,9 @@ body{
     width: 29.7rem;
     height: 47.25rem;
     background-color: rgb(116,203,72);
-    border-radius: 8px;
+    border-radius: 10.8px;
     padding: 0.3rem;
+    transition: background-color 0.5s ease-in-out;
 }
 #top{
     height: 30%;
@@ -55,6 +56,7 @@ body{
 #search:focus{    
     outline: none;
     border-bottom: 2.5px solid white;
+    transition: border-bottom 0.5s linear;
 }
 #number{
     font-weight: bold;
@@ -72,7 +74,7 @@ body{
 #data{
     background-color: white;
     height: 70%;
-    border-radius: 8px;
+    border-radius: 10.8px;
     padding-top: 5.5rem;
     display: flex;
     flex-direction: column;
@@ -145,6 +147,9 @@ body{
     justify-content: space-between;
     transform: translateY(-0.4rem);
 }
+#about-heading{
+    transition: color 0.5s ease-in-out;
+}
 #description{
     font-size: 0.8rem;
     padding-left: 1.25rem;
@@ -163,7 +168,9 @@ body{
     transform: translateY(0.2rem);
     /* border:1px solid black; */
 }
-
+#base-stats-heading{
+    transition: color 0.5s ease-in-out;
+}
 .stat-row{
     display: flex;
 }
@@ -176,6 +183,7 @@ body{
     text-align: right;
     padding-right: 0.5rem ;
     border-right: 1.5px solid rgba(160, 160, 160,0.7);
+    transition: color 0.5s ease-in-out;
 }
 .stat-number{
     padding-right: 0.6rem;
@@ -196,5 +204,5 @@ body{
 .bar-inner{
     background-color: rgb(116,203,72);
     border-radius: 4px;
-    transition: width 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }

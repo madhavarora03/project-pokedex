@@ -11,6 +11,9 @@ const pokedex    = document.querySelector('#pokedex');
 const about      = document.querySelector('#about-heading');
 const baseStats  = document.querySelector('#base-stats-heading');
 const statDesc   = document.querySelectorAll('.stat-description');
+const pkmnDesc   = document.querySelector('#description');
+const pkmnMoves  = document.querySelectorAll('.move-name');
+var pkmn_stats = [];
 
 const typeColors = {
     "rock":     [182, 158,  49],
@@ -36,7 +39,7 @@ const typeColors = {
 const fetchApi = async (pkmnName) => {
     // Joining pokemon names with more than one word
     pkmnName = pkmnName.split(' ').join('-');
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pkmnName);
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pkmnName.toLowerCase());
     if(response.status===200){
         const pkmnData = await response.json();
         return pkmnData;
@@ -45,17 +48,29 @@ const fetchApi = async (pkmnName) => {
 }
 
 search.addEventListener('change', async(event) => {
-    const pkmnData =  await fetchApi(event.target.value);
-
+    const pkmnData = await fetchApi(event.target.value);
     if (!pkmnData){
         alert("Pokémon does not exist!");
         return;
     }
+
+    // Fetches description data and updates description
+    const description_response = await fetch("https://pokeapi.co/api/v2/pokemon-species/" + pkmnData.id.toString());
+    const pkmnDescData = await description_response.json();
+
+    pkmnDesc.innerHTML = pkmnDescData.flavor_text_entries[9].flavor_text;
+
+
     // Setting theme colour
     const themeColour = typeColors[pkmnData.types[0].type.name];
 
-    console.log(pkmnData);
-    // console.log(pkmnData.stats.base_stat.toString());
+    // Finding the max-stat for relative sizing of inner-bar.
+    pkmn_stats = [];
+    for(var i in pkmnData.stats)
+        pkmn_stats.push([pkmnData.stats[i].base_stat]);
+    
+    let max_stat = Math.max(...pkmn_stats);
+        
     // Sets pokemon number # at the top of the page
     number.innerHTML = '#' + pkmnData.id.toString().padStart(3, '0');
     // Sets pokemon image
@@ -74,20 +89,18 @@ search.addEventListener('change', async(event) => {
     });
 
     // Updates Weight
-    weight.innerHTML = pkmnData.weight/10.0 + " kg";
+    weight.innerHTML = (pkmnData.weight/10.0) + " kg";
 
     // Updates Height
-    height.innerHTML = pkmnData.height/10.0 + " m";
+    height.innerHTML = (pkmnData.height/10.0) + " m";
 
-    // Updates Moves - to be figured out later
-     
-    // Updates Description - to be figured out later
-
+    // Updates Moves ---work to be done
+    
     // Updates stat number and stat bar
     pkmnData.stats.forEach((s, i) => {       
         statNumber[i].innerHTML = s.base_stat.toString().padStart(3,'0');
         Math.max(s.base_stat);
-        innerBar[i].style.width = `${s.base_stat}%`;
+        innerBar[i].style.width = `${((s.base_stat/max_stat)*100)-10}%`;
         innerBar[i].style.backgroundColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
         outerBar[i].style.backgroundColor = `rgba(${themeColour[0]},${themeColour[1]},${themeColour[2]},0.3)`
         statDesc[i].style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
@@ -99,5 +112,5 @@ search.addEventListener('change', async(event) => {
     // Updates the colour of headings and stats heading
     about.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
     baseStats.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
-    
+  
 });
