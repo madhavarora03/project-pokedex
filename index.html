@@ -14,7 +14,7 @@
             <div id="top-bar">
                 <img id="search-icon" alt="search-icon" src="images/search-icon.png"/>
                 <input
-                    type="text" 
+                    type="text"
                     id="search"
                     value="Bulbasaur"
                 />
@@ -56,11 +56,11 @@
                     <div class="heading">Height</div>
                 </div>
                 <div id="moves">
-                    <div id="all-moves-together">
-                        <div class="move-name">Chlorophyll</div>
-                        <div class="move-name">Overgrow</div>
-                    </div>
-                    <div class="heading">Moves</div>
+                    <button onclick="expandMoves()" id = "heading-moves-action" class="heading-moves">Moves ▼</button>
+                    <div class="dropdown">
+                        <div id = "dropdown-moves" class="moves-dropdown">
+                        </div>
+                </div>
                 </div>
             </div>
             <div id="description">There is a plant seed on its back right from the day this POKéMON is born. The seed slowly grows larger.</div>

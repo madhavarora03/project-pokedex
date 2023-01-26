@@ -12,8 +12,12 @@ const about      = document.querySelector('#about-heading');
 const baseStats  = document.querySelector('#base-stats-heading');
 const statDesc   = document.querySelectorAll('.stat-description');
 const pkmnDesc   = document.querySelector('#description');
-const pkmnMoves  = document.querySelectorAll('.move-name');
+const pkmnMoves = document.querySelector('div.moves-dropdown');
+// const scrollBar = document.querySelector('.moves-dropdown');
+// const scrollBarHover = document.querySelector('.moves-dropdown');
+
 var pkmn_stats = [];
+var pkmn_moves = [];
 
 const typeColors = {
     "rock":     [182, 158,  49],
@@ -36,7 +40,49 @@ const typeColors = {
     "dragon":   [112,  55, 255]
 }
 
-const fetchApi = async (pkmnName) => {
+
+function updates_moves(_data)
+{
+    for (i in pkmn_moves)
+        pkmn_moves[i].remove();
+
+    pkmn_moves = [];
+    for(var i = 0; i < _data.moves.length; i++)
+    {    
+        // console.log(_data.moves[i].move.name);
+        pkmn_moves.push(document.createElement('p'));
+        pkmn_moves[i].innerHTML = capitalizeFirstLetter(_data.moves[i].move.name);
+
+        pkmnMoves.appendChild(pkmn_moves[i]);
+    }
+}
+
+function capitalizeFirstLetter(string) {
+    const arr = string.split("-");
+    
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    
+    const str = arr.join(" ");
+    return str;
+}
+
+window.onclick = function(event){
+    if (!event.target.matches('#heading-moves-action')) {
+        document.getElementById ("dropdown-moves").style.display = "none";
+    }
+}
+function expandMoves(){
+    let displayVal = getComputedStyle(document.getElementById('dropdown-moves')).getPropertyValue('display');
+    if(displayVal === 'block'){
+        document.getElementById ("dropdown-moves").style.display = "none";
+    }
+    else if(displayVal === 'none'){
+        document.getElementById ("dropdown-moves").style.display = "block";
+    }
+}
+fetchApi = async (pkmnName) => {
     // Joining pokemon names with more than one word
     pkmnName = pkmnName.split(' ').join('-');
     const response = await fetch('https://pokeapi.co/api/v2/pokemon/' + pkmnName.toLowerCase());
@@ -63,6 +109,9 @@ search.addEventListener('change', async(event) => {
 
     // Setting theme colour
     const themeColour = typeColors[pkmnData.types[0].type.name];
+
+    // Sets pokemon image
+    pkmnImg.src = pkmnData.sprites.other.home.front_default;
 
     // Finding the max-stat for relative sizing of inner-bar.
     pkmn_stats = [];
@@ -94,7 +143,8 @@ search.addEventListener('change', async(event) => {
     // Updates Height
     height.innerHTML = (pkmnData.height/10.0) + " m";
 
-    // Updates Moves ---work to be done
+    // Updates Moves    
+    updates_moves(pkmnData);
     
     // Updates stat number and stat bar
     pkmnData.stats.forEach((s, i) => {       
@@ -112,5 +162,21 @@ search.addEventListener('change', async(event) => {
     // Updates the colour of headings and stats heading
     about.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
     baseStats.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
-  
+
+    // Changes the scroll-bar color
+    document.body.style.scrollbarFaceColor = `rgba(${themeColour[0]},${themeColour[1]},${themeColour[2]},0.7)`
+    document.body.style.scrollbarHighlightColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+
 });
+
+
+
+async function updates_moves_Bulbasaur() {
+    let _dat = await fetchApi('bulbasaur');
+    // console.log("testing");
+    // console.log(_dat);
+    if (!_dat)
+        return
+    updates_moves(_dat);
+}
+updates_moves_Bulbasaur();
