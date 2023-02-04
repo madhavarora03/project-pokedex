@@ -1,4 +1,5 @@
 const search     = document.querySelector('#search');
+const pokedexBorder = document.querySelector('pokedex');
 const number     = document.querySelector('#number');
 const pkmnImg    = document.querySelector('#pokemon-image');
 const types      = document.querySelector('#types');
@@ -12,9 +13,7 @@ const about      = document.querySelector('#about-heading');
 const baseStats  = document.querySelector('#base-stats-heading');
 const statDesc   = document.querySelectorAll('.stat-description');
 const pkmnDesc   = document.querySelector('#description');
-const pkmnMoves = document.querySelector('div.moves-dropdown');
-// const scrollBar = document.querySelector('.moves-dropdown');
-// const scrollBarHover = document.querySelector('.moves-dropdown');
+const pkmnMoves = document.querySelector('.moves-dropdown');
 
 var pkmn_stats = [];
 var pkmn_moves = [];
@@ -40,6 +39,9 @@ const typeColors = {
     "dragon":   [112,  55, 255]
 }
 
+function highlightSearch(){
+    search.select();
+}
 
 function updates_moves(_data)
 {
@@ -72,6 +74,7 @@ window.onclick = function(event){
     if (!event.target.matches('#heading-moves-action')) {
         document.getElementById ("dropdown-moves").style.display = "none";
     }
+
 }
 function expandMoves(){
     let displayVal = getComputedStyle(document.getElementById('dropdown-moves')).getPropertyValue('display');
@@ -105,10 +108,19 @@ search.addEventListener('change', async(event) => {
     const pkmnDescData = await description_response.json();
 
     pkmnDesc.innerHTML = pkmnDescData.flavor_text_entries[9].flavor_text;
+    if (pkmnDescData.is_legendary === true || pkmnDescData.is_mythical === true){
+        pokedex.setAttribute("style","border-image: linear-gradient(45deg,#ff0,#f0f,#0ff,#f00,#0f0,#00f); border-image-slice: 1;");
+    }
+    else{
+        pokedex.setAttribute("style","border-image: none");
+    }
+    console.log(pkmnDescData);
 
 
     // Setting theme colour
     const themeColour = typeColors[pkmnData.types[0].type.name];
+    let colourVal = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`;
+
 
     // Sets pokemon image
     pkmnImg.src = pkmnData.sprites.other.home.front_default;
@@ -151,9 +163,9 @@ search.addEventListener('change', async(event) => {
         statNumber[i].innerHTML = s.base_stat.toString().padStart(3,'0');
         Math.max(s.base_stat);
         innerBar[i].style.width = `${((s.base_stat/max_stat)*100)-10}%`;
-        innerBar[i].style.backgroundColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+        innerBar[i].style.backgroundColor = colourVal;
         outerBar[i].style.backgroundColor = `rgba(${themeColour[0]},${themeColour[1]},${themeColour[2]},0.3)`
-        statDesc[i].style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+        statDesc[i].style.color = colourVal;
     });
 
     // Updates Pokedex background
@@ -164,8 +176,8 @@ search.addEventListener('change', async(event) => {
     baseStats.style.color = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
 
     // Changes the scroll-bar color
-    document.body.style.scrollbarFaceColor = `rgba(${themeColour[0]},${themeColour[1]},${themeColour[2]},0.7)`
-    document.body.style.scrollbarHighlightColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
+    pkmnMoves.setAttribute("style","")
+    pkmnMoves.style.scrollbarHighlightColor = `rgb(${themeColour[0]},${themeColour[1]},${themeColour[2]})`
 
 });
 

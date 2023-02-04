@@ -14,11 +14,10 @@ body{
 }
 #pokedex{
     height: 92%;
+    box-shadow: 1em 0.6em 1.3em 0em ;
     aspect-ratio: 22/35;
     background-color: rgb(116,203,72);
-    border:4px solid transparent;
-    border-image: linear-gradient(45deg,#ff0,#f0f,#0ff,#f00,#0f0,#00f);
-    border-image-slice: 1;
+    border:5px solid transparent;
     border-radius: 10.8px;
     padding: 0.3rem;
     transition: background-color 0.5s ease-in-out;
