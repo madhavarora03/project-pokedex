@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css"></link> 
+    <link rel="stylesheet" href="style/style.css">
+    </link>
     <title>Pokédex</title>
 </head>
 
@@ -12,30 +14,20 @@
     <div id="pokedex">
         <div id="top">
             <div id="top-bar">
-                <img id="search-icon" onClick = 'highlightSearch()' alt="search-icon" src="images/search-icon.png"/>
-                <input
-                    type="text"
-                    id="search"
-                    value="Bulbasaur"
-                    onClick="this.setSelectionRange(0, this.value.length)"
-                />
+                <img id="search-icon" onClick='highlightSearch()' alt="search-icon" src="images/search-icon.png" />
+                <input type="text" id="search" value="Bulbasaur"
+                    onClick="this.setSelectionRange(0, this.value.length)" />
                 <span id="number">#001</span>
             </div>
             <div id="pokemon-image-placeholder">
-                <img src="images/1.png" id="pokemon-image" alt="pokemon-image"/>
+                <img src="images/1.png" id="pokemon-image" alt="pokemon-image" />
             </div>
         </div>
         <div id="data">
             <div id="types">
-                <span 
-                    style="background-color: rgb(116,203,72);"
-                    class="type"
-                    >
+                <span style="background-color: rgb(116,203,72);" class="type">
                     Grass</span>
-                <span 
-                    style="background-color: rgb(164,62,158);"
-                    class="type"
-                    >
+                <span style="background-color: rgb(164,62,158);" class="type">
                     Poison</span>
             </div>
             <h3 id="about-heading" style="color: rgb(116,203,72); font-weight: bold;">About</h3>
@@ -43,25 +35,25 @@
                 <div id="weight">
                     <div id="void"></div>
                     <span id="weight-image-and-value">
-                        <img src="images/weight-scale.png" id="weight-scale" alt="weight-scale"/>
-                        <span id = "weight-value">6.9 kg</span>
+                        <img src="images/weight-scale.png" id="weight-scale" alt="weight-scale" />
+                        <span id="weight-value">6.9 kg</span>
                     </span>
                     <div class="heading">Weight</div>
                 </div>
                 <div id="height">
                     <div id="void"></div>
                     <span id="height-image-and-value">
-                        <img id="ruler" alt="ruler" src="images/ruler.png"/>
+                        <img id="ruler" alt="ruler" src="images/ruler.png" />
                         <span id="height-value">0.7 m</span>
                     </span>
                     <div class="heading">Height</div>
                 </div>
                 <div id="moves">
-                    <button onclick="expandMoves()" id = "heading-moves-action" class="heading-moves">Moves ▼</button>
+                    <button onclick="expandMoves()" id="heading-moves-action" class="heading-moves">Moves </button>
                     <div class="dropdown">
-                        <div id = "dropdown-moves" class="moves-dropdown">
+                        <div id="dropdown-moves" class="moves-dropdown">
                         </div>
-                </div>
+                    </div>
                 </div>
             </div>
             <div id="description">There is a plant seed on its back right from the day this POKéMON is born. The seed slowly grows larger.</div>
@@ -74,7 +66,7 @@
                         <div class="bar-outer">
                             <div class="bar-inner" style="width:59.23076923%;"></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="stat-row">
                     <div class="stat-description">ATK</div>
@@ -83,7 +75,7 @@
                         <div class="bar-outer">
                             <div class="bar-inner" style="width:65.38461538%;"></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="stat-row">
                     <div class="stat-description">DEF</div>
@@ -92,7 +84,7 @@
                         <div class="bar-outer">
                             <div class="bar-inner" style="width:65.38461538%;"></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="stat-row">
                     <div class="stat-description">SATK</div>
@@ -101,7 +93,7 @@
                         <div class="bar-outer">
                             <div class="bar-inner" style="width:90%;"></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="stat-row">
                     <div class="stat-description">SDEF</div>
@@ -110,7 +102,7 @@
                         <div class="bar-outer">
                             <div class="bar-inner" style="width:90%;"></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="stat-row">
                     <div class="stat-description">SPD</div>
@@ -119,7 +111,7 @@
                         <div class="bar-outer">
                             <div class="bar-inner" style="width:59.23076923%;"></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
 
             </div>
@@ -128,4 +120,5 @@
 
     <script src="script/script.js"></script>
 </body>
+
 </html>
