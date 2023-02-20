@@ -18,6 +18,7 @@ const movesButton = document.querySelector('.heading-moves');
 
 var pkmn_stats = [];
 var pkmn_moves = [];
+var pkmn_names = [];
 
 const typeColors = {
     "rock": [182, 158, 49],
@@ -40,9 +41,22 @@ const typeColors = {
     "dragon": [112, 55, 255]
 }
 
-function highlightSearch() {
-    search.select();
+_get_all_data = async () => {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1300');
+    if (response.status === 200) {
+        const pkmnData = await response.json();
+        // console.log(pkmnData.results[0].name);
+        for (i in pkmnData.results) {
+            pkmn_names.push(pkmnData.results[i].name);
+        }
+    }
+    return false;
 }
+
+_get_all_data();
+console.log(pkmn_names);// function highlightSearch() {
+//     search.select();
+// }
 
 function updates_moves(_data) {
     for (i in pkmn_moves)
@@ -84,6 +98,7 @@ function expandMoves() {
         document.getElementById("dropdown-moves").style.display = "block";
     }
 }
+
 fetchApi = async (pkmnName) => {
     // Joining pokemon names with more than one word
     pkmnName = pkmnName.split(' ').join('-');
@@ -95,7 +110,14 @@ fetchApi = async (pkmnName) => {
     return false;
 }
 
-search.addEventListener('change', async (event) => {
+
+
+search.onkeyup = (e) => {
+    matching_results = pkmn_names.filter((data) => {
+        return data.toLocaleLowerCase().startsWith(search.value.toLocaleLowerCase());
+    });
+    console.log(matching_results);
+};search.addEventListener('change', async (event) => {
     const pkmnData = await fetchApi(event.target.value);
     if (!pkmnData) {
         alert("Pokémon does not exist!");
@@ -113,7 +135,7 @@ search.addEventListener('change', async (event) => {
     else {
         pokedex.setAttribute("style", "border-image: none");
     }
-    console.log(pkmnDescData);
+    // console.log(pkmnDescData); --
 
 
     // Setting theme colour
@@ -194,9 +216,9 @@ search.addEventListener('change', async (event) => {
 
 async function updates_moves_Bulbasaur() {
     let _dat = await fetchApi('bulbasaur');
-    // console.log("testing");
+      // console.log("testing");
     // console.log(_dat);
-    if (!_dat)
+  if (!_dat)
         return
     updates_moves(_dat);
 }
